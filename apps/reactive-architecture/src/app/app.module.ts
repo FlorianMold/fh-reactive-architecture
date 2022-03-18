@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {PaymentModule} from "./payment/payment.module";
+import { TransactionsModule } from './transactions/transactions.module';
+import { PaymentModule } from './payment/payment.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, PaymentModule],
+  imports: [BrowserModule, HttpClientModule, BrowserAnimationsModule, PaymentModule, TransactionsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
