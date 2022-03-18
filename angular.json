@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "reactive-architecture": "apps/reactive-architecture",
+    "reactive-architecture-e2e": "apps/reactive-architecture-e2e"
+  }
+}

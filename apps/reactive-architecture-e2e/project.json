@@ -1,0 +1,28 @@
+{
+  "root": "apps/reactive-architecture-e2e",
+  "sourceRoot": "apps/reactive-architecture-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/reactive-architecture-e2e/cypress.json",
+        "devServerTarget": "reactive-architecture:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "reactive-architecture:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/reactive-architecture-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["reactive-architecture"]
+}
