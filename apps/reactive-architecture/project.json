@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/reactive-architecture",
         "index": "apps/reactive-architecture/src/index.html",
@@ -18,7 +20,10 @@
           "apps/reactive-architecture/src/favicon.ico",
           "apps/reactive-architecture/src/assets"
         ],
-        "styles": ["apps/reactive-architecture/src/styles.scss"],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+          "apps/reactive-architecture/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -86,7 +91,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/reactive-architecture"],
+      "outputs": [
+        "coverage/apps/reactive-architecture"
+      ],
       "options": {
         "jestConfig": "apps/reactive-architecture/jest.config.js",
         "passWithNoTests": true
