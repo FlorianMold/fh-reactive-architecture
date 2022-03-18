@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [PaymentComponent],
@@ -20,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     CommonModule,
     MatButtonModule,
+    MatDatepickerModule,
   ],
   exports: [PaymentComponent],
 })

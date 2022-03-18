@@ -1,75 +1,28 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
-    <mat-card-header>
-      <mat-card-title>Create Payment</mat-card-title>
-    </mat-card-header>
+<h2>Create Payment</h2>
+<form [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="main-card">
     <mat-card-content>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Company" formControlName="company" />
+            <input matInput placeholder="From Name" formControlName="fromName" />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="From Iban" formControlName="fromIban" />
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName" />
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
+            <input matInput placeholder="To Name" formControlName="toName" />
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName" />
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Address" formControlName="address"></textarea>
-            <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
-              Address is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row" *ngIf="!hasUnitNumber">
-        <div class="col">
-          <button mat-button type="button" (click)="hasUnitNumber = !hasUnitNumber">+ Add C/O, Apt, Suite, Unit</button>
-        </div>
-      </div>
-      <div class="row" *ngIf="hasUnitNumber">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput placeholder="Address 2" formControlName="address2"></textarea>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="City" formControlName="city" />
-            <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
-              City is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-select placeholder="State" formControlName="state">
-              <mat-option *ngFor="let state of states" [value]="state.abbreviation">
-                {{ state.name }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
-              State is <strong>required</strong>
-            </mat-error>
+            <input matInput placeholder="To Iban" formControlName="toIban" />
           </mat-form-field>
         </div>
       </div>
@@ -78,28 +31,41 @@
           <mat-form-field class="full-width">
             <input
               matInput
-              #postalCode
               maxlength="5"
-              placeholder="Postal Code"
+              placeholder="Amount"
               type="number"
-              formControlName="postalCode"
+              formControlName="paymentAmount"
             />
-            <mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <mat-radio-group formControlName="shipping">
-            <mat-radio-button value="free">Free Shipping</mat-radio-button>
-            <mat-radio-button value="priority">Priority Shipping</mat-radio-button>
-            <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
-          </mat-radio-group>
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Payment reference" formControlName="paymentReference"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="paymentDate">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <div class="right-submit-button">
+        <button mat-raised-button color="primary" type="submit">Transfer</button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </form>
