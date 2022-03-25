@@ -1,0 +1,22 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="main-card">
+    <mat-card-content>
+      <div class="row">
+        <mat-form-field appearance="fill" class="full-width">
+          <input matInput placeholder="Username" formControlName="username" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="full-width">
+          <input matInput type="password" placeholder="Password" formControlName="password" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="right-submit-button">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>
