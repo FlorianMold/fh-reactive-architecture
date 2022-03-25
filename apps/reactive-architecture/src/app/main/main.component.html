@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+    <p>Welcome {{_currentUser | async}}</p>
+  </div>
+  <div class="col right-submit-button">
+    <button mat-raised-button color="primary" type="submit" (click)="handleLogout()">Logout</button>
+  </div>
+</div>
+<fh-create-payment></fh-create-payment>
+<div class="row">
+  <div class="col">
+    <fh-transactions></fh-transactions>
+  </div>
+  <div class="col">
+    <fh-payments></fh-payments>
+  </div>
+</div>
