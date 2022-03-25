@@ -9,3 +9,32 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: whitesmoke;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.main-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.right-submit-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}

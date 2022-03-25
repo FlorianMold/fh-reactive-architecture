@@ -6,7 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TransactionsModule } from './transactions/transactions.module';
 import { PaymentModule } from './payment/payment.module';
-import { MatNativeDateModule } from "@angular/material/core";
+import { MatNativeDateModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from './core/core.module';
+import { LoginModule } from './login/login.module';
+import { AppRoutingModule } from './app-routing.modules';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +21,10 @@ import { MatNativeDateModule } from "@angular/material/core";
     PaymentModule,
     TransactionsModule,
     MatNativeDateModule,
+    RouterModule,
+    CoreModule,
+    LoginModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
