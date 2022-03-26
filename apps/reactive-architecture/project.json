@@ -98,6 +98,16 @@
         "jestConfig": "apps/reactive-architecture/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "generateGraphqlSchema": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx graphql-codegen --config apps/reactive-architecture/codegen.yml -r dotenv/config"
+          }
+        ]
+      }
     }
   },
   "tags": []
