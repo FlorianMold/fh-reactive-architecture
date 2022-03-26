@@ -1,29 +1,36 @@
-<h2>Your Transactions</h2>
-<div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
-    </ng-container>
+<h2>Your latest Transactions</h2>
+<mat-accordion class="transaction-header">
+  <mat-expansion-panel *ngFor="let payment of _transactionSubscription | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>
+          <strong>From:</strong> {{payment.from_name}} -
+          <strong>To: </strong> {{payment.to_name}}
+        </span>
+      </mat-panel-title>
+      <mat-panel-description>
+        <span>
+          <strong>From IBAN:</strong> {{payment.from_iban}} -
+          <strong>To IBAN:</strong> {{payment.to_iban}}
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-    </ng-container>
+    <div class="row">
+      <div class="col">
+        <p><strong>From Name:</strong> {{payment.from_name}}</p>
+        <p><strong>From IBAN:</strong> {{payment.from_iban}}</p>
+        <p><strong>Amount:</strong> {{payment.amount}}$</p>
+        <p><strong>Execution Date:</strong> {{payment.execution_date}}</p>
+      </div>
+      <div class="col">
+        <p><strong>To Name:</strong> {{payment.to_name}}</p>
+        <p><strong>To IBAN:</strong> {{payment.to_name}}</p>
+        <mat-form-field class="full-width" disabled>
+          <textarea readonly matInput disabled placeholder="Payment reference">{{payment.payment_reference}}</textarea>
+        </mat-form-field>
+      </div>
+    </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator
-    #paginator
-    [length]="dataSource?.data?.length"
-    [pageIndex]="0"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]"
-    aria-label="Select page"
-  >
-  </mat-paginator>
-</div>
+  </mat-expansion-panel>
+</mat-accordion>

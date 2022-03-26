@@ -24,7 +24,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this._authenticationService.attemptAuthentication();
-
     this._currentUser = this._authenticationService
       .currentUser
       .pipe(map((value) => value?.person.name ?? ""));

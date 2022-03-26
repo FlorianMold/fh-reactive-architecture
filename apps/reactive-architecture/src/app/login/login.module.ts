@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     MatButtonModule,
     MatInputModule,
     RouterModule.forChild(routes),
+    CommonModule,
   ],
   exports: [LoginComponent],
 })

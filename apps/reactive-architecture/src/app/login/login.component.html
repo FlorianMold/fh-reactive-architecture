@@ -2,6 +2,7 @@
 <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="main-card">
     <mat-card-content>
+      <p *ngIf="_invalidLogin" [ngStyle]="{color: 'red'}">Invalid login</p>
       <div class="row">
         <mat-form-field appearance="fill" class="full-width">
           <input matInput placeholder="Username" formControlName="username" />

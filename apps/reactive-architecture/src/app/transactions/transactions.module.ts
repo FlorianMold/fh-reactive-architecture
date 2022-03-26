@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { TransactionsComponent } from './transactions.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [MatExpansionModule, CommonModule, MatInputModule],
   declarations: [TransactionsComponent],
   exports: [TransactionsComponent],
 })

@@ -38,3 +38,8 @@ body {
   justify-content: flex-end;
   padding: 0;
 }
+
+textarea {
+  // Override material
+  resize: none !important;
+}

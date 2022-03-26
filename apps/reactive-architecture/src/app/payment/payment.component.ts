@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const { person } = this._authenticationService.getCurrentUser();
+
     const { fromIban, fromName, paymentAmount, paymentDate, paymentReference, toIban, toName } = this.paymentForm.value;
     this._paymentService
       .createPayment({
@@ -51,6 +53,10 @@ export class PaymentComponent implements OnInit {
         date: paymentDate,
       })
       .subscribe(console.log);
-    this.form.resetForm();
+    this.form.resetForm({
+      fromIban: person.iban,
+      fromName: person.name,
+      paymentDate: new Date()
+    });
   }
 }
