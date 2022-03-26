@@ -1,5 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
+import { PaymentGraphQLService } from '../core/services/graphql';
+import { AuthenticationService } from '../core/services';
 
 @Component({
   selector: 'fh-create-payment',
@@ -7,21 +9,48 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./payment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentComponent {
-  paymentForm = this.fb.group({
-    fromName: [null, Validators.required],
-    fromIban: [null, Validators.required],
-    toName: [null, Validators.required],
-    toIban: [null, Validators.required],
-    paymentAmount: [null, Validators.required],
-    paymentReference: [null, Validators.required],
-    paymentDate: [null, Validators.required],
-  });
+export class PaymentComponent implements OnInit {
+  @ViewChild('form') form!: NgForm;
 
-  constructor(private fb: FormBuilder) {}
+  paymentForm!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private _authenticationService: AuthenticationService,
+    private _paymentService: PaymentGraphQLService
+  ) {}
+
+  ngOnInit(): void {
+    const { person } = this._authenticationService.getCurrentUser();
+
+    this.paymentForm = this.fb.group({
+      fromName: [person.name, Validators.required],
+      fromIban: [person.iban, Validators.required],
+      toName: [null, Validators.required],
+      toIban: [null, Validators.required],
+      paymentAmount: [null, Validators.required],
+      paymentReference: [null, Validators.required],
+      paymentDate: [new Date(), Validators.required],
+    });
+  }
 
   onSubmit(): void {
-    console.log(this.paymentForm.value);
-    alert('Thanks!');
+    const { fromIban, fromName, paymentAmount, paymentDate, paymentReference, toIban, toName } = this.paymentForm.value;
+    this._paymentService
+      .createPayment({
+        from: {
+          name: fromName,
+          iban: fromIban,
+        },
+        to: {
+          name: toName,
+          iban: toIban,
+        },
+        paymentReference,
+        amount: paymentAmount,
+        date: paymentDate,
+      })
+      .subscribe(console.log);
+    this.form.resetForm();
   }
 }

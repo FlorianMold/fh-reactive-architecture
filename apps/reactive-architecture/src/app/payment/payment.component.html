@@ -1,5 +1,5 @@
 <h2>Create Payment</h2>
-<form [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()">
+<form #form="ngForm" [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="main-card">
     <mat-card-content>
       <div class="row">
@@ -64,7 +64,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="right-submit-button">
-        <button mat-raised-button color="primary" type="submit">Transfer</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Transfer</button>
       </div>
     </mat-card-actions>
   </mat-card>
