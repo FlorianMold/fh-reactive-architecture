@@ -8,9 +8,10 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { PaymentModule } from './payment/payment.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from "./core";
 import { LoginModule } from './login/login.module';
 import { AppRoutingModule } from './app-routing.modules';
+import { GraphQLModule } from "./core";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.modules';
     CoreModule,
     LoginModule,
     AppRoutingModule,
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
