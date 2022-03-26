@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { TransactionsDataSource, TransactionsItem } from './payments-datasource';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { PaymentGraphQLService } from '../core/services/graphql';
+import { AuthenticationService } from '../core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'fh-payments',
@@ -10,22 +9,13 @@ import { TransactionsDataSource, TransactionsItem } from './payments-datasource'
   styleUrls: ['./payments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PaymentsComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<TransactionsItem>;
-  dataSource: TransactionsDataSource;
+export class PaymentsComponent implements OnInit {
+  constructor(private _paymentService: PaymentGraphQLService, private _authenticationService: AuthenticationService) {}
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  _paymentsSubscription!: Observable<any>;
 
-  constructor() {
-    this.dataSource = new TransactionsDataSource();
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  ngOnInit() {
+    const currentUser = this._authenticationService.getCurrentUser();
+    this._paymentsSubscription = this._paymentService.subscribeToPayments(currentUser.person.iban);
   }
 }
