@@ -1,0 +1,46 @@
+query AllPaymentsOfIban($fromIban: String!) {
+    banking_payments(where: {from_iban: {_eq: $fromIban}}) {
+        id
+        amount
+        date
+        from_iban
+        from_name
+        payment_reference
+        to_iban
+        to_name
+    }
+}
+
+mutation CreatePayment($amount: float8!, $date: date!, $fromIban: String!, $fromName: String!, $toIban: String!, $toName: String!, $paymentReference: String!) {
+    insert_banking_payments(objects: {amount: $amount, date: $date, from_iban: $fromIban, from_name: $fromName, payment_reference: $paymentReference, to_iban: $toIban, to_name: $toName}) {
+        returning {
+            id
+        }
+    }
+}
+
+subscription OnPaymentsSubscription($iban: String!) {
+    banking_payments(where: {from_iban: {_eq: $iban}}, order_by: {id: desc}) {
+        amount
+        date
+        from_iban
+        from_name
+        payment_reference
+        to_iban
+        to_name
+        id
+    }
+}
+
+subscription OnTransactionSubscription($iban: String!)  {
+    banking_transactions(where: {_or: [{from_iban: {_eq: $iban}}, {to_iban: {_eq: $iban}}]}, order_by: {id: desc}) {
+        amount
+        execution_date
+        from_iban
+        from_name
+        id
+        payment_reference
+        to_iban
+        to_name
+    }
+}
