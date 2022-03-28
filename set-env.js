@@ -15,13 +15,15 @@ const targetPath = './apps/reactive-architecture/src/environments/environment.pr
  * @param isProduction Whether the application is in production mode
  * @param hasuraSchemaUrl The graphql endpoint of the application.
  * @param graphqlWSEndpoint The graphql endpoint of the application.
+ * @param graphqlHTTPEndpoint The graphql endpoint of the application.
  * @returns string
  */
-const generateEnvironment = (isProduction, hasuraSchemaUrl, graphqlWSEndpoint) => {
+const generateEnvironment = (isProduction, hasuraSchemaUrl, graphqlWSEndpoint, graphqlHTTPEndpoint) => {
   return `export const environment = {
   production: ${isProduction},
   hasuraSecret: '${hasuraSchemaUrl}',
   graphqlWSEndpoint: '${graphqlWSEndpoint}',
+  graphqlHTTPEndpoint: '${graphqlHTTPEndpoint}',
 };
 `;
 };
@@ -30,6 +32,7 @@ const envFile = generateEnvironment(
   true,
   process.env.HASURA_ADMIN_SECRET,
   process.env.HASURA_SCHEMA_URL,
+  process.env.HASURA_SCHEMA_URL_HTTP,
 );
 
 console.log(colors.magenta('The file environment.prod.ts will be written with the following content'));

@@ -11,7 +11,7 @@
     "test": "nx test",
     "set-angular-prod-config": "node set-env.js",
     "codegen-frontend": "graphql-codegen --config apps/reactive-architecture/codegen.yml -r dotenv/config",
-    "codegen-backend": ""
+    "codegen-backend": "graphql-codegen --config apps/api/codegen.yml -r dotenv/config"
   },
   "private": true,
   "dependencies": {
@@ -30,19 +30,26 @@
     "@golevelup/nestjs-hasura": "^2.0.2",
     "@graphql-codegen/introspection": "^2.1.1",
     "@graphql-codegen/typescript": "^2.4.8",
+    "@nestjs/apollo": "^10.0.8",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^10.0.8",
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/angular": "13.9.2",
     "apollo-angular": "^3.0.0",
     "apollo-server-express": "^3.6.6",
+    "cross-fetch": "^3.1.5",
     "graphql": "^16.3.0",
     "graphql-request": "^4.2.0",
+    "graphql-subscriptions-client": "^0.16.3",
+    "graphql-ws": "^5.6.4",
     "hasura-cli": "^2.2.0",
+    "ngx-toastr": "^14.2.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
+    "ws": "^8.5.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

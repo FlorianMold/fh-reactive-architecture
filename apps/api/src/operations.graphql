@@ -1,0 +1,28 @@
+subscription onPaymentsSubscription {
+    banking_payments {
+        amount
+        date
+        from_iban
+        from_name
+        payment_reference
+        to_iban
+        to_name
+        id
+    }
+}
+
+mutation createPayment($amount: float8!, $date: date!, $fromIban: String!, $fromName: String!, $toIban: String!, $toName: String!, $paymentReference: String!) {
+    insert_banking_payments(objects: {amount: $amount, date: $date, from_iban: $fromIban, from_name: $fromName, payment_reference: $paymentReference, to_iban: $toIban, to_name: $toName}) {
+        returning {
+            id
+        }
+    }
+}
+
+mutation createTransaction($amount: float8!, $executionDate: date!, $fromIban: String!, $fromName: String!, $toIban: String!, $toName: String!, $paymentReference: String!) {
+    insert_banking_transactions(objects: {amount: $amount, execution_date: $executionDate, from_iban: $fromIban, from_name: $fromName, payment_reference: $paymentReference, to_iban: $toIban, to_name: $toName}) {
+        returning {
+            id
+        }
+    }
+}
