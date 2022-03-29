@@ -12,6 +12,7 @@ import { CoreModule } from "./core";
 import { LoginModule } from './login/login.module';
 import { AppRoutingModule } from './app-routing.modules';
 import { GraphQLModule } from "./core";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { GraphQLModule } from "./core";
     LoginModule,
     AppRoutingModule,
     GraphQLModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

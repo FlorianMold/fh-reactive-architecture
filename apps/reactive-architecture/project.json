@@ -22,6 +22,7 @@
         ],
         "styles": [
           "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+          "node_modules/ngx-toastr/toastr.css",
           "apps/reactive-architecture/src/styles.scss"
         ],
         "scripts": []

@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { PaymentGraphQLService } from '../core/services/graphql';
 import { AuthenticationService } from '../core/services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'fh-create-payment',
@@ -17,7 +18,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _authenticationService: AuthenticationService,
-    private _paymentService: PaymentGraphQLService
+    private _paymentService: PaymentGraphQLService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -52,11 +54,14 @@ export class PaymentComponent implements OnInit {
         amount: paymentAmount,
         date: paymentDate,
       })
-      .subscribe(console.log);
+      .subscribe((value) => {
+        console.log(value);
+        this.toastr.success('Payment created!');
+      });
     this.form.resetForm({
       fromIban: person.iban,
       fromName: person.name,
-      paymentDate: new Date()
+      paymentDate: new Date(),
     });
   }
 }
