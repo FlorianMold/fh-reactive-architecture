@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  reactive-architecture-frontend:
+    image: "reactive-architecture-frontend:0.1.0"
+    container_name: reactive-architecture-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - fh
+  reactive-architecture-backend:
+    image: "reactive-architecture-backend:0.1.0"
+    container_name: reactive-architecture-backend
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    networks:
+      - fh
+    env_file:
+      - .env
+
+networks:
+  fh:
+    driver: bridge

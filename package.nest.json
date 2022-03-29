@@ -1,0 +1,30 @@
+{
+  "name": "fh",
+  "version": "0.1.0",
+  "author": "Florian Mold",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "@golevelup/nestjs-graphql-request": "^0.1.10",
+    "@golevelup/nestjs-hasura": "^2.0.2",
+    "@graphql-codegen/introspection": "^2.1.1",
+    "@graphql-codegen/typescript": "^2.4.8",
+    "@nestjs/apollo": "^10.0.8",
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/graphql": "^10.0.8",
+    "@nestjs/platform-express": "^8.0.0",
+    "apollo-server-express": "^3.6.6",
+    "cross-fetch": "^3.1.5",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.2.0",
+    "graphql-ws": "^5.6.4",
+    "hasura-cli": "^2.2.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~7.4.0",
+    "tslib": "^2.0.0",
+    "ws": "^8.5.0"
+  }
+}
